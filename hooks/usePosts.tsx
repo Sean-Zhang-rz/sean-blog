@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-interface Post {
+export interface Post {
   id: string
   date: string
   title: string

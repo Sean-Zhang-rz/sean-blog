@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import png from '../assets/images/leaf.png'
+// import png from '../assets/images/leaf.png'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
