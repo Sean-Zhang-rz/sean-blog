@@ -11,7 +11,10 @@ export const AppDataSource = new DataSource({
     database: "blog_development",
     synchronize: true,
     logging: false,
-    entities: [User],
+    // entities: [User],
+    entities: [
+        "dist/entity/**/*.ts"
+    ],
     migrations: [],
     subscribers: [],
 })
