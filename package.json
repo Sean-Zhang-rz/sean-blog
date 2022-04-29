@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typeorm:build": "babel -w ./src --out-dir dist --extensions .ts,.tsx",
+    "migration:run": "typeorm migration:run"
   },
   "dependencies": {
     "@babel/cli": "^7.17.6",
@@ -21,7 +23,7 @@
     "react-dom": "18.0.0",
     "reflect-metadata": "^0.1.13",
     "sass": "^1.50.1",
-    "typeorm": "^0.3.6",
+    "typeorm": "^0.2.25",
     "ua-parser-js": "^1.0.2"
   },
   "devDependencies": {

@@ -6,9 +6,11 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _dataSource = require("./data-source");
+var _typeorm = require("typeorm");
 
-_dataSource.AppDataSource.initialize().then( /*#__PURE__*/function () {
+require("reflect-metadata");
+
+(0, _typeorm.createConnection)().then( /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection) {
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
