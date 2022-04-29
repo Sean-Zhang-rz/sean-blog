@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Try1651199637817 = void 0;
+exports.CreatePost1651160009605 = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -15,12 +15,14 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var Try1651199637817 = /*#__PURE__*/function () {
-  function Try1651199637817() {
-    (0, _classCallCheck2["default"])(this, Try1651199637817);
+var _typeorm = require("typeorm");
+
+var CreatePost1651160009605 = /*#__PURE__*/function () {
+  function CreatePost1651160009605() {
+    (0, _classCallCheck2["default"])(this, CreatePost1651160009605);
   }
 
-  (0, _createClass2["default"])(Try1651199637817, [{
+  (0, _createClass2["default"])(CreatePost1651160009605, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -28,6 +30,28 @@ var Try1651199637817 = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return queryRunner.createTable(new _typeorm.Table({
+                  name: 'posts',
+                  columns: [{
+                    name: 'id',
+                    type: 'int',
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment'
+                  }, {
+                    name: 'title',
+                    type: 'varchar'
+                  }, {
+                    name: 'content',
+                    type: 'text'
+                  }]
+                }));
+
+              case 2:
+                return _context.abrupt("return", _context.sent);
+
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -49,6 +73,13 @@ var Try1651199637817 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return queryRunner.dropTable('posts');
+
+              case 2:
+                return _context2.abrupt("return", _context2.sent);
+
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -63,7 +94,7 @@ var Try1651199637817 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return Try1651199637817;
+  return CreatePost1651160009605;
 }();
 
-exports.Try1651199637817 = Try1651199637817;
+exports.CreatePost1651160009605 = CreatePost1651160009605;

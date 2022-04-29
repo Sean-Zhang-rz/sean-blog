@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"babel -w ./src --out-dir dist --extensions .ts,.tsx\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typeorm:build": "babel -w ./src --out-dir dist --extensions .ts,.tsx",
     "migration:run": "typeorm migration:run"
   },
   "dependencies": {
@@ -16,6 +15,7 @@
     "@babel/plugin-proposal-decorators": "^7.17.9",
     "@types/ua-parser-js": "^0.7.36",
     "axios": "^0.27.0",
+    "concurrently": "^7.1.0",
     "gray-matter": "^4.0.3",
     "next": "12.1.5",
     "pg": "^8.7.3",
