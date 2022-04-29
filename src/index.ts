@@ -1,19 +1,16 @@
 import { createConnection } from "typeorm"
 import "reflect-metadata"
+import { Post } from "./entity/Post"
 
 createConnection().then(async connection => {
-    // console.log("Inserting a new user into the database...")
-    // const user = new User()
-    // user.firstName = "Timber"
-    // user.lastName = "Saw"
-    // user.age = 25
-    // await AppDataSource.manager.save(user)
-    // console.log("Saved a new user with id: " + user.id)
-
-    // console.log("Loading users from the database...")
-    // const users = await AppDataSource.manager.find(User)
-    // console.log("Loaded users: ", users)
-
-    // console.log("Here you can setup and run express / fastify / any other framework.")
-    console.log(connection)
+    const posts= await connection.manager.find(Post)
+    console.log(posts)
+    const p = new Post()
+    p.title = 'Post 1'
+    p.content = '我的第一篇文章'
+    await connection.manager.save(p)
+    const post2 = await connection.manager.find(Post)
+    console.log(post2);
+    
+    connection.close()
 }).catch(error => console.log(error))
