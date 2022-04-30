@@ -10,15 +10,19 @@ var _typeorm = require("typeorm");
 
 require("reflect-metadata");
 
+var _User = require("./entity/User");
+
 (0, _typeorm.createConnection)().then( /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection) {
+    var manager, user;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            connection.close();
+            manager = connection.manager;
+            user = new _User.User();
 
-          case 1:
+          case 2:
           case "end":
             return _context.stop();
         }
