@@ -27,5 +27,5 @@ export class Comment {
   user: User;
 
   @ManyToOne((type) => Post, (post) => post.comments)
-  posts: Post;
+  post: Post;
 }

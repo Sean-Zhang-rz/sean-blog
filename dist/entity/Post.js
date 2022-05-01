@@ -32,7 +32,7 @@ var Post = (_dec = (0, _typeorm.Entity)('posts'), _dec2 = (0, _typeorm.PrimaryGe
 }), _dec8 = (0, _typeorm.OneToMany)(function (type) {
   return _Comment.Comment;
 }, function (comment) {
-  return comment.posts;
+  return comment.post;
 }), _dec(_class = (_class2 = function Post() {
   (0, _classCallCheck2["default"])(this, Post);
   (0, _initializerDefineProperty2["default"])(this, "id", _descriptor, this);

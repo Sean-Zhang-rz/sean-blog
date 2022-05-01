@@ -41,7 +41,7 @@ var RenameColumns1651289682907 = /*#__PURE__*/function () {
 
               case 6:
                 _context.next = 8;
-                return queryRunner.renameColumn('comments', 'post_id', 'postrId');
+                return queryRunner.renameColumn('comments', 'post_id', 'postId');
 
               case 8:
                 return _context.abrupt("return", _context.sent);
@@ -81,7 +81,7 @@ var RenameColumns1651289682907 = /*#__PURE__*/function () {
 
               case 6:
                 _context2.next = 8;
-                return queryRunner.renameColumn('comments', 'postrId', 'post_id');
+                return queryRunner.renameColumn('comments', 'postId', 'post_id');
 
               case 8:
                 return _context2.abrupt("return", _context2.sent);

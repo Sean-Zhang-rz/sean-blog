@@ -40,7 +40,7 @@ var Comment = (_dec = (0, _typeorm.Entity)('comments'), _dec2 = (0, _typeorm.Pri
   (0, _initializerDefineProperty2["default"])(this, "createdAt", _descriptor3, this);
   (0, _initializerDefineProperty2["default"])(this, "updatedAt", _descriptor4, this);
   (0, _initializerDefineProperty2["default"])(this, "user", _descriptor5, this);
-  (0, _initializerDefineProperty2["default"])(this, "posts", _descriptor6, this);
+  (0, _initializerDefineProperty2["default"])(this, "post", _descriptor6, this);
 }, (_descriptor = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "id", [_dec2], {
   configurable: true,
   enumerable: true,
@@ -66,7 +66,7 @@ var Comment = (_dec = (0, _typeorm.Entity)('comments'), _dec2 = (0, _typeorm.Pri
   enumerable: true,
   writable: true,
   initializer: null
-}), _descriptor6 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "posts", [_dec7], {
+}), _descriptor6 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "post", [_dec7], {
   configurable: true,
   enumerable: true,
   writable: true,
