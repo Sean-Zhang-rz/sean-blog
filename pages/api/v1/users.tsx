@@ -1,5 +1,4 @@
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
-import md5 from 'md5';
 import { NextApiHandler } from 'next';
 import { User } from 'src/entity/User';
 
@@ -7,18 +6,12 @@ const Posts: NextApiHandler = async (req, res) => {
   console.log(req.body);
   const { username, password, passwordConfirmation } = req.body;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  // const errors = {
-  //   username: [] as string[],
-  //   password: [] as string[],
-  //   passwordConfirmation: [] as string[],
-  // };
 
   const connection = await getDatabaseConnection();
   const user = new User();
   user.username = username.trim();
   user.password = password;
   user.passwordConfirmation = passwordConfirmation;
-  user.passwordDigest = md5(password);
   await user.validate();
 
   if (user.hasErrors()) {
