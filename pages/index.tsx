@@ -1,5 +1,6 @@
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { GetServerSideProps, NextPage } from 'next';
+import Link from 'next/link';
 import { Post } from 'src/entity/Post';
 import { UAParser } from 'ua-parser-js';
 import styles from '../styles/Home.module.css';
@@ -19,9 +20,11 @@ const Index: NextPage<Props> = (props) => {
   return (
     <div>
       <h1 className={styles.container}>你的浏览器是 {props.browser.name}</h1>
-      {posts.map((p, index) => {
-        return <div key={index}>{p.title}</div>;
-      })}
+      {posts.map((p) => (
+        <Link href={`/posts/${p.id}`} key={p.id}>
+          <a>{p.title}</a>
+        </Link>
+      ))}
     </div>
   );
 };
