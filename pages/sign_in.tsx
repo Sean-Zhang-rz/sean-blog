@@ -21,7 +21,6 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     axios.post(`/api/v1/sessions`, formData).then(
       () => {
         window.alert('登录成功');
-        // window.location.href = '/sign_in';
       },
       (error) => {
         if (error.response) {

@@ -31,7 +31,6 @@ const SignUp: NextPage = () => {
         }
       }
     );
-    console.log(formData);
   }, [formData]);
 
   return (

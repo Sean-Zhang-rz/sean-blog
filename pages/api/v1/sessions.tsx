@@ -5,8 +5,6 @@ import { SignIn } from 'src/model/SignIn';
 
 const Seesions: NextApiHandler = async (req, res) => {
   const { username, password } = req.body;
-  console.log(req.session);
-
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
   const connection = await getDatabaseConnection();
