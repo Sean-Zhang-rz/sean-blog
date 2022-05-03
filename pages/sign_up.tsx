@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { NextPage } from 'next';
 import { useCallback, useState } from 'react';
+import { Form } from './components/Form';
 
 interface SignUpProps {
   username: string;
@@ -32,11 +33,47 @@ const SignUp: NextPage = () => {
       }
     );
   }, [formData]);
+  const onChange = useCallback(
+    (k: string, v: string) => {
+      setFormData({ ...formData, [k]: v });
+    },
+    [formData]
+  );
 
   return (
     <>
       <h1>注册</h1>
-      <form
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+        fields={[
+          {
+            label: '用户名',
+            onChange: (e) => onChange('username', e.target.value),
+            errors: errors.username,
+          },
+          {
+            label: '密码',
+            type: 'password',
+            onChange: (e) => onChange('password', e.target.value),
+            errors: errors.password,
+          },
+          {
+            label: '确认密码',
+            type: 'password',
+            onChange: (e) => onChange('passwordConfirmation', e.target.value),
+            errors: errors.passwordConfirmation,
+          },
+        ]}
+        buttons={
+          <>
+            <button type="submit">注册</button>
+          </>
+        }
+      />
+      {/* <form
         action=""
         onSubmit={(e) => {
           e.preventDefault();
@@ -87,7 +124,7 @@ const SignUp: NextPage = () => {
         <div>
           <button type="submit">注册</button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
