@@ -411,6 +411,11 @@
   "resolved" "https://registry.npmmirror.com/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
+"@types/lodash@^4.14.182":
+  "integrity" "sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q=="
+  "resolved" "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.182.tgz"
+  "version" "4.14.182"
+
 "@types/md5@^2.3.2":
   "integrity" "sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og=="
   "resolved" "https://registry.npmmirror.com/@types/md5/-/md5-2.3.2.tgz"
