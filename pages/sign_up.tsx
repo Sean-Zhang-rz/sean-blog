@@ -73,58 +73,6 @@ const SignUp: NextPage = () => {
           </>
         }
       />
-      {/* <form
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-      >
-        <div>
-          <label>
-            用户名
-            <input
-              type="text"
-              value={formData.username}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, username: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.username?.length > 0 ? <div>{errors.username.join(',')}</div> : null}
-        </div>
-        <div>
-          <label>
-            密码
-            <input
-              type="password"
-              value={formData.password}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, password: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.password?.length > 0 ? <div>{errors.password.join(',')}</div> : null}
-        </div>
-        <div>
-          <label>
-            确认密码
-            <input
-              type="password"
-              value={formData.passwordConfirmation}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, passwordConfirmation: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.passwordConfirmation?.length > 0 ? (
-            <div>{errors.passwordConfirmation.join(',')}</div>
-          ) : null}
-        </div>
-        <div>
-          <button type="submit">注册</button>
-        </div>
-      </form> */}
     </>
   );
 };
