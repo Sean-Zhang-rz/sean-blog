@@ -2,7 +2,7 @@ import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { NextApiHandler } from 'next';
 import { User } from 'src/entity/User';
 
-const Posts: NextApiHandler = async (req, res) => {
+const Users: NextApiHandler = async (req, res) => {
   console.log(req.body);
   const { username, password, passwordConfirmation } = req.body;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -25,4 +25,4 @@ const Posts: NextApiHandler = async (req, res) => {
   res.end();
 };
 
-export default Posts;
+export default Users;

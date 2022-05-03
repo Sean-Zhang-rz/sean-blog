@@ -2,27 +2,24 @@ import axios, { AxiosResponse } from 'axios';
 import { NextPage } from 'next';
 import { useCallback, useState } from 'react';
 
-interface SignUpProps {
+interface SignInProps {
   username: string;
   password: string;
-  passwordConfirmation: string;
 }
 const SignUp: NextPage = () => {
-  const [formData, setFormData] = useState<SignUpProps>({
+  const [formData, setFormData] = useState<SignInProps>({
     username: '',
     password: '',
-    passwordConfirmation: '',
   });
   const [errors, setErrors] = useState({
     username: [],
     password: [],
-    passwordConfirmation: [],
   });
   const submit = useCallback(() => {
-    axios.post(`/api/v1/users`, formData).then(
+    axios.post(`/api/v1/sessions`, formData).then(
       () => {
-        window.alert('注册成功');
-        window.location.href = '/sign_in';
+        window.alert('登录成功');
+        // window.location.href = '/sign_in';
       },
       (error) => {
         if (error.response) {
@@ -36,7 +33,7 @@ const SignUp: NextPage = () => {
 
   return (
     <>
-      <h1>注册</h1>
+      <h1>登录</h1>
       <form
         action=""
         onSubmit={(e) => {
@@ -71,22 +68,7 @@ const SignUp: NextPage = () => {
           {errors.password?.length > 0 ? <div>{errors.password.join(',')}</div> : null}
         </div>
         <div>
-          <label>
-            确认密码
-            <input
-              type="password"
-              value={formData.passwordConfirmation}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, passwordConfirmation: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.passwordConfirmation?.length > 0 ? (
-            <div>{errors.passwordConfirmation.join(',')}</div>
-          ) : null}
-        </div>
-        <div>
-          <button type="submit">注册</button>
+          <button type="submit">登录</button>
         </div>
       </form>
     </>
