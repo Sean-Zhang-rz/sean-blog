@@ -16,6 +16,7 @@ const Seesions: NextApiHandler = async (req, res) => {
     res.statusCode = 422;
     res.write(JSON.stringify(signIn.errors));
   } else {
+    console.log(req.session);
     req.session.set('currentUser', signIn.user);
     await req.session.save();
     res.statusCode = 200;

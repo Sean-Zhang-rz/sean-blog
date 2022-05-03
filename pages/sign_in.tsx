@@ -3,6 +3,7 @@ import { withSession } from 'lib/withSession';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useCallback, useState } from 'react';
 import { User } from 'src/entity/User';
+import { Form } from './components/Form';
 
 interface SignInProps {
   username: string;
@@ -31,6 +32,13 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     );
   }, [formData]);
 
+  const onChange = useCallback(
+    (k: string, v: string) => {
+      setFormData({ ...formData, [k]: v });
+    },
+    [formData]
+  );
+
   return (
     <>
       {props.user ? (
@@ -38,43 +46,30 @@ const SignIn: NextPage<{ user: User }> = (props) => {
       ) : (
         <div>
           <h1>登录</h1>
-          <form
-            action=""
+          <Form
             onSubmit={(e) => {
               e.preventDefault();
               submit();
             }}
-          >
-            <div>
-              <label>
-                用户名
-                <input
-                  type="text"
-                  value={formData.username}
-                  onChange={(e) => {
-                    setFormData((preV) => ({ ...preV, username: e.target.value }));
-                  }}
-                />
-              </label>
-              {errors.username?.length > 0 ? <div>{errors.username.join(',')}</div> : null}
-            </div>
-            <div>
-              <label>
-                密码
-                <input
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) => {
-                    setFormData((preV) => ({ ...preV, password: e.target.value }));
-                  }}
-                />
-              </label>
-              {errors.password?.length > 0 ? <div>{errors.password.join(',')}</div> : null}
-            </div>
-            <div>
-              <button type="submit">登录</button>
-            </div>
-          </form>
+            fields={[
+              {
+                label: '用户名',
+                onChange: (e) => onChange('username', e.target.value),
+                errors: errors.username,
+              },
+              {
+                label: '密码',
+                type: 'password',
+                onChange: (e) => onChange('password', e.target.value),
+                errors: errors.password,
+              },
+            ]}
+            buttons={
+              <>
+                <button type="submit">登录</button>
+              </>
+            }
+          />
         </div>
       )}
     </>
@@ -86,7 +81,8 @@ export default SignIn;
 export const getServerSideProps: GetServerSideProps = withSession(
   async (context: GetServerSidePropsContext) => {
     // @ts-ignore
-    const user = context.req.session.get('currentUser');
+    const user = context.req.session.get('currentUser') || '';
+
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
