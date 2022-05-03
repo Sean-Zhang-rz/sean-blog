@@ -16,7 +16,6 @@ createConnection()
     post.content = '我的第一篇博客';
     post.author = user;
     await manager.save(post);
-    console.log(post.id);
     const comment = new Comment();
     comment.user = user;
     comment.post = post;

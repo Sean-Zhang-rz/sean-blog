@@ -39,18 +39,17 @@ var _Comment = require("./entity/Comment");
             return manager.save(post);
 
           case 12:
-            console.log(post.id);
             comment = new _Comment.Comment();
             comment.user = user;
             comment.post = post;
             comment.content = '点赞';
-            _context.next = 19;
+            _context.next = 18;
             return manager.save(comment);
 
-          case 19:
+          case 18:
             connection.close();
 
-          case 20:
+          case 19:
           case "end":
             return _context.stop();
         }

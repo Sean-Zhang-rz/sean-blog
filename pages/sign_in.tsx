@@ -1,12 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
-import { NextPage } from 'next';
+import { withSession } from 'lib/withSession';
+import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useState } from 'react';
+import { User } from 'src/entity/User';
 
 interface SignInProps {
   username: string;
   password: string;
 }
-const SignUp: NextPage = () => {
+const SignIn: NextPage<{ user: User }> = (props) => {
   const [formData, setFormData] = useState<SignInProps>({
     username: '',
     password: '',
@@ -28,51 +30,67 @@ const SignUp: NextPage = () => {
         }
       }
     );
-    console.log(formData);
   }, [formData]);
 
   return (
     <>
-      <h1>登录</h1>
-      <form
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-      >
+      {props.user ? (
+        <div>当前登录用户为{props.user.username}</div>
+      ) : (
         <div>
-          <label>
-            用户名
-            <input
-              type="text"
-              value={formData.username}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, username: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.username?.length > 0 ? <div>{errors.username.join(',')}</div> : null}
+          <h1>登录</h1>
+          <form
+            action=""
+            onSubmit={(e) => {
+              e.preventDefault();
+              submit();
+            }}
+          >
+            <div>
+              <label>
+                用户名
+                <input
+                  type="text"
+                  value={formData.username}
+                  onChange={(e) => {
+                    setFormData((preV) => ({ ...preV, username: e.target.value }));
+                  }}
+                />
+              </label>
+              {errors.username?.length > 0 ? <div>{errors.username.join(',')}</div> : null}
+            </div>
+            <div>
+              <label>
+                密码
+                <input
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => {
+                    setFormData((preV) => ({ ...preV, password: e.target.value }));
+                  }}
+                />
+              </label>
+              {errors.password?.length > 0 ? <div>{errors.password.join(',')}</div> : null}
+            </div>
+            <div>
+              <button type="submit">登录</button>
+            </div>
+          </form>
         </div>
-        <div>
-          <label>
-            密码
-            <input
-              type="password"
-              value={formData.password}
-              onChange={(e) => {
-                setFormData((preV) => ({ ...preV, password: e.target.value }));
-              }}
-            />
-          </label>
-          {errors.password?.length > 0 ? <div>{errors.password.join(',')}</div> : null}
-        </div>
-        <div>
-          <button type="submit">登录</button>
-        </div>
-      </form>
+      )}
     </>
   );
 };
 
-export default SignUp;
+export default SignIn;
+
+// @ts-ignore
+export const getServerSideProps: GetServerSideProps = withSession(async (context) => {
+  // @ts-ignore
+  const user = context.req.session.get('currentUser');
+  return {
+    props: {
+      user: JSON.parse(JSON.stringify(user)),
+    },
+  };
+});

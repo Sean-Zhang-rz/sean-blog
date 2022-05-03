@@ -3,7 +3,6 @@ import { NextApiHandler } from 'next';
 import { User } from 'src/entity/User';
 
 const Users: NextApiHandler = async (req, res) => {
-  console.log(req.body);
   const { username, password, passwordConfirmation } = req.body;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
