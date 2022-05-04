@@ -5,6 +5,8 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { User } from 'src/entity/User';
 
 const SignIn: NextPage<{ user: User }> = (props) => {
+  // submit暂不优化
+
   const onSubmit = (formData: typeof initFormData) => {
     axios.post(`/api/v1/sessions`, formData).then(
       () => {
