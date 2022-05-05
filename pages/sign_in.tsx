@@ -3,6 +3,7 @@ import { useForm } from 'hooks/useForm';
 import { withSession } from 'lib/withSession';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { User } from 'src/entity/User';
+import qs from 'query-string';
 
 const SignIn: NextPage<{ user: User }> = (props) => {
   // submit暂不优化
@@ -11,6 +12,7 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     axios.post(`/api/v1/sessions`, formData).then(
       () => {
         window.alert('登录成功');
+        // qs.
       },
       (error) => {
         if (error.response) {

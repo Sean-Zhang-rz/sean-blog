@@ -1,5 +1,4 @@
 import { NextApiHandler } from 'next';
-import getPosts from 'lib/posts';
 import { Post } from 'src/entity/Post';
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { withSession } from 'lib/withSession';
@@ -10,10 +9,12 @@ const Posts: NextApiHandler = withSession(async (req, res) => {
     const post = new Post();
     post.title = title;
     post.content = content;
-
     const user = req.session.get('currentUser');
-    console.log('user');
-    console.log(user);
+    if (!user) {
+      res.statusCode = 401;
+      res.end();
+      return;
+    }
     post.author = user;
     const connection = await getDatabaseConnection();
     await connection.manager.save(post);
