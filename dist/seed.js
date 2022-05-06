@@ -60,6 +60,5 @@ var _Comment = require("./entity/Comment");
   return function (_x) {
     return _ref.apply(this, arguments);
   };
-}())["catch"](function (error) {
-  return console.log(error);
+}())["catch"](function (error) {// empty
 });

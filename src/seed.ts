@@ -23,4 +23,6 @@ createConnection()
     await manager.save(comment);
     connection.close();
   })
-  .catch((error) => console.log(error));
+  .catch((error) => {
+    // empty
+  });

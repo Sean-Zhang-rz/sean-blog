@@ -44,7 +44,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     skip: (page - 1) * perPage,
     take: perPage,
   });
-  console.log(posts);
 
   return {
     props: {
