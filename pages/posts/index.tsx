@@ -4,16 +4,19 @@ import Link from 'next/link';
 import { Post } from 'src/entity/Post';
 import styles from 'styles/Home.module.css';
 import qs from 'querystring';
+import usePager from 'hooks/usePager';
 
 interface Props {
   posts: Post[];
   count: number;
   perPage: number;
   page: number;
+  totalPage: number;
 }
 
 const PostsIndex: NextPage<Props> = (props) => {
-  const { posts, count, page } = props;
+  const { posts, count, page, totalPage } = props;
+  const { pager } = usePager({ count, page, totalPage });
 
   return (
     <div>
@@ -21,19 +24,11 @@ const PostsIndex: NextPage<Props> = (props) => {
       {posts.map((p) => (
         <div key={p.id} className={styles.font}>
           <Link href={`/posts/${p.id}`}>
-            <a>{p.title}</a>
+            <a>{p.title || '默认文章'}</a>
           </Link>
         </div>
       ))}
-      <footer>
-        <Link href={`?page=${page - 1 || 1}`}>
-          <a> {'<'}</a>
-        </Link>
-        共 {count} 篇文章，当前是第 {page} 页
-        <Link href={`?page=${page + 1}`}>
-          <a> {'>'}</a>
-        </Link>
-      </footer>
+      <footer>{pager}</footer>
     </div>
   );
 };
@@ -57,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       posts: JSON.parse(JSON.stringify(posts)),
       count,
       page,
+      totalPage: Math.ceil(count / perPage),
     },
   };
 };
