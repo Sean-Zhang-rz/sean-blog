@@ -1,7 +1,7 @@
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { NextApiHandler } from 'next';
 import { User } from 'src/entity/User';
-import { successResponse } from 'utils/response';
+import { errorResponse, successResponse } from 'utils/response';
 
 const Users: NextApiHandler = async (req, res) => {
   const { username, password, passwordConfirmation } = req.body;
@@ -16,6 +16,8 @@ const Users: NextApiHandler = async (req, res) => {
 
   if (user.hasErrors()) {
     res.statusCode = 422;
+    console.log(JSON.stringify(user.errors));
+    // res.json(errorResponse({ msg: JSON.stringify(user.errors) }));
     res.write(JSON.stringify(user.errors));
   } else {
     await connection.manager.save(user);

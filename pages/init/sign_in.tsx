@@ -12,6 +12,11 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     initApi.signIn(formData).then(
       () => {
         window.alert('登录成功');
+        const query = window.location.search.split('?').pop();
+        const params = new URLSearchParams(query);
+        if (params.has('returnTo')) {
+          window.location.href = params.get('returnTo');
+        }
       },
       (error) => {
         if (error.response) {

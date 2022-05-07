@@ -20,6 +20,7 @@
     "@types/md5": "^2.3.2",
     "@types/ua-parser-js": "^0.7.36",
     "concurrently": "^7.1.0",
+    "events": "^3.3.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",

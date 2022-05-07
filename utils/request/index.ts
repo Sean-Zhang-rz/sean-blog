@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export interface Res<Data> {
   code: number;
   data: Data;
@@ -22,7 +21,6 @@ type ApiConfig = {
 };
 
 export const api = '/api/v1';
-
 class Request {
   private async base<Response>(
     method: Method,
@@ -41,12 +39,12 @@ class Request {
       data: {
         ...data,
         // todo
-        // token: needLogin ? await authLogin.getToken() : undefined,
+        // session: needLogin ? await authLogin.getSession() : undefined,
         // systemCode: systemInfo.systemCode,
       },
     };
     const request = axios[method];
-    const req: Promise<Res<Response>> = request(opt.url, data).then((res) => res.data);
+    const req: Promise<Res<Response>> = request(opt.url, opt.data).then((res) => res.data);
 
     let res: Res<Response>;
 
@@ -67,16 +65,8 @@ class Request {
     switch (res.code) {
       case 0:
         return res;
-      case 401:
-        // todo
-        // authLogin.logout();
-        if (loginRetry > 0) {
-          loginRetry = (loginRetry - 1) as 0;
-          return this.base(method, apiAddress, data, {
-            ...apiConfig,
-            retry,
-          });
-        }
+      case 103:
+        window.location.href = `/init/sign_in?returnTo=${window.location.pathname}`;
         break;
       default:
     }
