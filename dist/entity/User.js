@@ -122,8 +122,7 @@ var User = (_dec = (0, _typeorm.Entity)('users'), _dec2 = (0, _typeorm.PrimaryGe
   }, {
     key: "toJSON",
     value: function toJSON() {
-      // todo lodash omit
-      return _lodash["default"].omit(this, ['password', 'passwordConfirmation', 'passwordDigest', 'errors']); // return 'sean';
+      return _lodash["default"].omit(this, ['password', 'passwordConfirmation', 'passwordDigest', 'errors']);
     }
   }]);
   return User;

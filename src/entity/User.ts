@@ -71,8 +71,6 @@ export class User {
   }
 
   toJSON() {
-    // todo lodash omit
     return _.omit(this, ['password', 'passwordConfirmation', 'passwordDigest', 'errors']);
-    // return 'sean';
   }
 }

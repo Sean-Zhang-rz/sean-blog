@@ -2,6 +2,7 @@ import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { withSession } from 'lib/withSession';
 import { NextApiHandler } from 'next';
 import { SignIn } from 'src/model/SignIn';
+import { successResponse } from 'utils/response';
 
 const Seesions: NextApiHandler = async (req, res) => {
   const { username, password } = req.body;
@@ -19,7 +20,7 @@ const Seesions: NextApiHandler = async (req, res) => {
     req.session.set('currentUser', signIn.user);
     await req.session.save();
     res.statusCode = 200;
-    res.write(JSON.stringify(signIn.user));
+    res.json(successResponse());
   }
   res.end();
 };

@@ -1,22 +1,22 @@
-import axios from 'axios';
 import { useForm } from 'hooks/useForm';
 import { NextPage } from 'next';
+import postApi from './api/post';
+import PostProps from './api/types/post';
 
 const PostNew: NextPage = () => {
-  const onSubmit = (formData: typeof initFormData) => {
-    axios
-      .post(`/api/v1/posts`, formData)
+  const onSubmit = (formData: PostProps) => {
+    postApi
+      .postsNew(formData)
       .then(() => {
-        window.alert('');
+        window.alert('发布成功');
       })
       .catch((e) => {
-        setErrors(e.response.data);
+        setErrors(e.message);
       });
   };
 
-  const initFormData = { title: '', content: '' };
-  const { form, setErrors } = useForm({
-    initFormData,
+  const { form, setErrors } = useForm<PostProps>({
+    initFormData: { title: '', content: '' },
     fields: [
       {
         label: '标题',

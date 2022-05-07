@@ -3,16 +3,15 @@ import { useForm } from 'hooks/useForm';
 import { withSession } from 'lib/withSession';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { User } from 'src/entity/User';
-import qs from 'query-string';
+import initApi from './api/init';
+import SignInProps from './api/types/init';
 
 const SignIn: NextPage<{ user: User }> = (props) => {
   // submit暂不优化
-
-  const onSubmit = (formData: typeof initFormData) => {
-    axios.post(`/api/v1/sessions`, formData).then(
+  const onSubmit = (formData: SignInProps) => {
+    initApi.signIn(formData).then(
       () => {
         window.alert('登录成功');
-        // qs.
       },
       (error) => {
         if (error.response) {
@@ -23,9 +22,8 @@ const SignIn: NextPage<{ user: User }> = (props) => {
     );
   };
 
-  const initFormData = { username: '', password: '' };
   const { form, setErrors } = useForm({
-    initFormData,
+    initFormData: { username: '', password: '' },
     fields: [
       {
         label: '用户名',

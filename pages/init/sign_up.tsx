@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { useForm } from 'hooks/useForm';
 import { NextPage } from 'next';
+import initApi from './api/init';
 
 const SignUp: NextPage = () => {
   const onSubmit = (formData: typeof initFormData) => {
-    axios.post(`/api/v1/users`, formData).then(
+    initApi.signUp(formData).then(
       () => {
         window.alert('注册成功');
-        window.location.href = '/sign_in';
+        window.location.href = '/init/sign_in';
       },
       (error) => {
         if (error.response) {
