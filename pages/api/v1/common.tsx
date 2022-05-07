@@ -19,6 +19,7 @@ const commonCheck = async ({
     res.end();
     return false;
   }
+  return true;
 };
 
 export default commonCheck;
