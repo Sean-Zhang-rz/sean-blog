@@ -1,5 +1,5 @@
 import Request, { api } from 'utils/request';
-import PostProps from '../../../api/types/post';
+import PostProps from './types/post';
 
 class PostApi extends Request {
   async postsNew(data: PostProps): Promise<{}> {

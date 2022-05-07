@@ -1,7 +1,7 @@
 import { useForm } from 'hooks/useForm';
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import postApi from './api/post';
+import postApi from '../../api/post';
 import PostProps from '../../api/types/post';
 
 const PostNew: NextPage = () => {

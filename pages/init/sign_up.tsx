@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { useForm } from 'hooks/useForm';
 import { NextPage } from 'next';
-import initApi from './api/init';
+import initApi from '../../api/init';
 
 const SignUp: NextPage = () => {
   const onSubmit = (formData: typeof initFormData) => {

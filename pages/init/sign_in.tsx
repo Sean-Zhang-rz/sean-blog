@@ -3,7 +3,7 @@ import { useForm } from 'hooks/useForm';
 import { withSession } from 'lib/withSession';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { User } from 'src/entity/User';
-import initApi from './api/init';
+import initApi from '../../api/init';
 import SignInProps from '../../api/types/init';
 
 const SignIn: NextPage<{ user: User }> = (props) => {
