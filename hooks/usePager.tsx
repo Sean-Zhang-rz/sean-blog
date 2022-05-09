@@ -15,7 +15,7 @@ export const usePager = (options: usePagerProps) => {
           <a>上一页 </a>
         </Link>
       ) : null}
-      共 {count} 篇文章，当前是第 {page} / {totalPage} 页
+      共 {count} 篇文章，当前是第 {page} / {totalPage || 1} 页
       {page < totalPage ? (
         <Link href={`?page=${page + 1}`}>
           <a> 下一页</a>
