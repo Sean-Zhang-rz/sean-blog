@@ -39,7 +39,7 @@ docker run -v "blog-data":/var/lib/postgresql/data -p 5432:5432 --name=db1 --net
 ```
 docker ps
 docker kill 容器id
-docker remove 容器id
+docker rm 容器id
 rm -rf blog-data
 或
 docker container prune
@@ -50,7 +50,7 @@ docker volume rm blog-data
 
 ```
 docker exec -it 容器id bash
-psql -U blog -W
+psql -U blog
 CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYPE 'en_US.utf8';
 ```
 
@@ -75,3 +75,11 @@ npm run dev
 docker build . -t sean/node-web-app
 docker run -p 3000:3000 --network=network1 -d sean/node-web-app
 ```
+
+```
+curl -L http://localhost:3000
+```
+
+## 线上
+
+docker run 需要加上 --network=host
