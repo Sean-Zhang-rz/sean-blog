@@ -18,14 +18,20 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## windows docker 设置网络
+
+```
+docker network create network1
+```
+
 ## 启动数据库
 
 ```
 mkdir blog-data
-docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 --net=host -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 --name=db1 --network=network1 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 
 或者旧版Windows Docker客户端运行以下代码
-docker run -v "blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
+docker run -v "blog-data":/var/lib/postgresql/data -p 5432:5432 --name=db1 --network=network1 -e POSTGRES_USER=blog -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.2
 ```
 
 ## 清空之前的开发环境
@@ -50,7 +56,7 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 
 ## 数据表
 
-首先修改 ormconfig.json 中的 host, 然后运行、
+首先修改 ormconfig.json 中的 host 为 db1, 然后运行
 
 ```
 yarn mr
@@ -63,4 +69,9 @@ node dist/seed.js
 yarn dev
 或者
 npm run dev
+```
+
+```
+docker build . -t sean/node-web-app
+docker run -p 3000:3000 --network=network1 -d sean/node-web-app
 ```
