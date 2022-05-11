@@ -84,5 +84,5 @@ curl -L http://localhost:3000
 ## 线上部署
 
 ```
-ssh blog@dev1 'sh /home/blog/app/bin/deploy.sh'
+ssh blog@dev1 'bash -s' < bin/deploy.sh
 ```

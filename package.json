@@ -13,7 +13,7 @@
     "mr": "typeorm migration:run",
     "mrt": "typeorm migration:revert",
     "ec": "typeorm entity:create",
-    "d": "ssh blog@dev1 'sh /home/blog/app/bin/deploy.sh'"
+    "d": "ssh blog@dev1 'bash -s' < bin/deploy.sh"
   },
   "dependencies": {
     "@babel/cli": "^7.17.6",
