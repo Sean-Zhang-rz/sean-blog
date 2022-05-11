@@ -2,14 +2,19 @@ import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import { Post } from 'src/entity/Post';
+import { marked } from 'marked';
+import styles from './Id.module.css';
 
 interface Props {
   posts: Post;
 }
 const PostsShow: NextPage<Props> = ({ posts }) => (
-  <div>
-    <h1>{posts.title}</h1>
-    <article>{posts.content}</article>
+  <div className={styles.wraper}>
+    <h1 className={styles.title}>{posts.title}</h1>
+    <article
+      className={styles.markdown_body}
+      dangerouslySetInnerHTML={{ __html: marked(posts.content) }}
+    ></article>
   </div>
 );
 

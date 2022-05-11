@@ -2,7 +2,7 @@ import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { Post } from 'src/entity/Post';
-import styles from 'styles/Index.module.css';
+import styles from './Index.module.css';
 import usePager from 'hooks/usePager';
 
 interface Props {
@@ -19,7 +19,7 @@ const PostsIndex: NextPage<Props> = (props) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.container}>文章列表（{count}）</h1>
+      <h1>文章列表（{count}）</h1>
       {posts.map((p) => (
         <div key={p.id} className={styles.font}>
           <Link href={`/posts/${p.id}`}>

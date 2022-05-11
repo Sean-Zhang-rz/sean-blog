@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import 'github-markdown-css';
+0;
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
