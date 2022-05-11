@@ -1,14 +1,17 @@
 import { useForm } from 'hooks/useForm';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import postApi from '../../api/post';
 import PostProps from '../../api/types/post';
 
 const PostNew: NextPage = () => {
+  const router = useRouter();
   const onSubmit = (formData: PostProps) => {
     postApi
       .postsNew({ post: formData })
       .then(() => {
         window.alert('发布成功');
+        router.back();
       })
       .catch((e) => {
         setErrors(e.message);

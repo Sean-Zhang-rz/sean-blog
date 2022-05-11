@@ -9,8 +9,6 @@ const Posts: NextApiHandler = withSession(async (req, res) => {
   if (req.method === 'POST') {
     const flag = await commonCheck({ req, res });
     if (flag) {
-      console.log(req.body);
-
       const {
         id,
         post: { title, content },

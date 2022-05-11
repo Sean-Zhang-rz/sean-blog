@@ -2,6 +2,7 @@ import { useForm } from 'hooks/useForm';
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { withSession } from 'lib/withSession';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { Post } from 'src/entity/Post';
 import postApi from '../../../api/post';
 import PostProps from '../../../api/types/post';
@@ -12,11 +13,13 @@ interface Props {
 }
 
 const PostEdit: NextPage<Props> = (props) => {
+  const router = useRouter();
   const onSubmit = (formData: PostProps) => {
     postApi
-      .editArticle({ post: formData, id })
+      .postsNew({ post: formData, id })
       .then(() => {
         window.alert('发布成功');
+        router.back();
       })
       .catch((e) => {
         setErrors(e.message);
