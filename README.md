@@ -74,6 +74,7 @@ npm run dev
 ```
 docker build . -t sean/node-web-app
 docker run -p 3000:3000 --network=network1 -d sean/node-web-app
+docker run -p 3000:3000 --network=host -d sean/node-web-app
 ```
 
 ```
