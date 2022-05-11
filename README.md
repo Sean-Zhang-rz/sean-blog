@@ -81,6 +81,8 @@ docker run -p 3000:3000 --network=host -d sean/node-web-app
 curl -L http://localhost:3000
 ```
 
-## 线上
+## 线上部署
 
-docker run 需要加上 --network=host
+```
+ssh blog@dev1 'sh /home/blog/app/bin/deploy.sh'
+```
