@@ -2,7 +2,7 @@ import Request, { api } from 'utils/request';
 import PostProps from './types/post';
 
 class PostApi extends Request {
-  async postsNew(data: PostProps): Promise<{}> {
+  async postsNew(data: { post: PostProps }): Promise<{}> {
     return this.post<{}>(api, {
       action: 'posts',
       ...data,
@@ -10,8 +10,8 @@ class PostApi extends Request {
   }
 
   async editArticle(data: { post: PostProps; id: number }): Promise<{}> {
-    return this.patch<{}>(api, {
-      action: `posts/${data.id}`,
+    return this.post<{}>(api, {
+      action: `posts`,
       ...data,
     }).then((r) => r.data);
   }

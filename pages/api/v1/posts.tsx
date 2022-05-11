@@ -9,14 +9,24 @@ const Posts: NextApiHandler = withSession(async (req, res) => {
   if (req.method === 'POST') {
     const flag = await commonCheck({ req, res });
     if (flag) {
-      const { title, content } = req.body;
+      console.log(req.body);
+
+      const {
+        id,
+        post: { title, content },
+      } = req.body;
       const user = req.session.get('currentUser');
-      const post = new Post();
+      const connection = await getDatabaseConnection();
+      let post;
+      if (id) {
+        post = await connection.manager.findOne<Post>('Post', id);
+      } else {
+        post = new Post();
+        post.author = user;
+      }
       post.title = title;
       post.content = content;
       res.statusCode = 200;
-      post.author = user;
-      const connection = await getDatabaseConnection();
       await connection.manager.save(post);
       res.json(successResponse());
     }

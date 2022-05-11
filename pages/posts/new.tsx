@@ -6,7 +6,7 @@ import PostProps from '../../api/types/post';
 const PostNew: NextPage = () => {
   const onSubmit = (formData: PostProps) => {
     postApi
-      .postsNew(formData)
+      .postsNew({ post: formData })
       .then(() => {
         window.alert('发布成功');
       })

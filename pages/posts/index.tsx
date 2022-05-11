@@ -21,8 +21,6 @@ const PostsIndex: NextPage<Props> = (props) => {
   const { currentUser, posts, count, page, totalPage } = props;
   const { pager } = usePager({ count, page, totalPage });
 
-  // console.log(currentUser);
-
   return (
     <div className={styles.container}>
       <header className={styles.header}>
