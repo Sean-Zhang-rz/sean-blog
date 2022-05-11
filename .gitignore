@@ -5,6 +5,7 @@
 /.pnp
 /.vscode/
 .pnp.js
+/ormcongig.json/
 
 # testing
 /coverage
