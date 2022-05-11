@@ -2,6 +2,15 @@
   margin: 8px 32px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  margin-right: auto;
+}
 .font {
   margin: 16px 0;
   color: #08f;

@@ -8,6 +8,13 @@ class PostApi extends Request {
       ...data,
     }).then((r) => r.data);
   }
+
+  async editArticle(data: { post: PostProps; id: number }): Promise<{}> {
+    return this.patch<{}>(api, {
+      action: `posts/${data.id}`,
+      ...data,
+    }).then((r) => r.data);
+  }
 }
 
 const postApi = new PostApi();

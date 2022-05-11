@@ -1,5 +1,6 @@
 import { getDatabaseConnection } from 'lib/getDatabaseConnection';
 import { GetServerSideProps, NextPage } from 'next';
+import Link from 'next/link';
 import React from 'react';
 import { Post } from 'src/entity/Post';
 import { marked } from 'marked';
@@ -10,7 +11,12 @@ interface Props {
 }
 const PostsShow: NextPage<Props> = ({ posts }) => (
   <div className={styles.wraper}>
-    <h1 className={styles.title}>{posts.title}</h1>
+    <header>
+      <h1 className={styles.title}>{posts.title}</h1>
+      <Link href="/posts/[id]/edit" as={`/posts/${posts.id}/edit`}>
+        <a>编辑</a>
+      </Link>
+    </header>
     <article
       className={styles.markdown_body}
       dangerouslySetInnerHTML={{ __html: marked(posts.content) }}

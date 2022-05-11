@@ -10,7 +10,7 @@ interface Body {
   [key: string]: unknown;
 }
 
-type Method = 'post' | 'get';
+type Method = 'post' | 'get' | 'patch';
 
 type ApiConfig = {
   showToast?: boolean;
@@ -88,6 +88,14 @@ class Request {
     apiConfig?: ApiConfig
   ): Promise<Res<Response>> {
     return this.base('get', apiAddress, data, apiConfig);
+  }
+
+  patch<Response>(
+    apiAddress: string,
+    data: undefined | Body,
+    apiConfig?: ApiConfig
+  ): Promise<Res<Response>> {
+    return this.base('patch', apiAddress, data, apiConfig);
   }
 }
 
