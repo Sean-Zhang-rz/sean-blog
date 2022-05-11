@@ -1,0 +1,32 @@
+diff --git a/src/entity/User.ts b/src/entity/User.ts
+index 875aeae..c694e53 100644
+--- a/src/entity/User.ts
++++ b/src/entity/User.ts
+@@ -9,7 +9,7 @@ import {
+ } from 'typeorm';
+ import { Post } from './Post';
+ import { Comment } from './Comment';
+-import { getDatabaseConnection } from 'lib/getDatabaseConnection';
++// import { getDatabaseConnection } from 'lib/getDatabaseConnection';
+ import md5 from 'md5';
+ import _ from 'lodash';
+ 
+@@ -49,12 +49,12 @@ export class User {
+     if (this.username.trim().length > 42) this.errors.username.push('用户名太长了');
+     if (this.username.trim().length < 4) this.errors.username.push('用户名太短了');
+     // todo found的格式是什么？？
+-    const found = await (
+-      await getDatabaseConnection()
+-    ).manager.find(User, {
+-      username: this.username,
+-    });
+-    if (found.length > 0) this.errors.username.push('用户名不能重复');
++    // const found = await (
++    //   await getDatabaseConnection()
++    // ).manager.find(User, {
++    //   username: this.username,
++    // });
++    // if (found.length > 0) this.errors.username.push('用户名不能重复');
+ 
+     if (this.password === '') this.errors.password.push('密码不能为空');
+     if (this.password !== this.passwordConfirmation)
