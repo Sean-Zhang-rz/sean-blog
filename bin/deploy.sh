@@ -4,6 +4,7 @@ git pull &&
 yarn install --production=false &&
 yarn build &&
 git apply migrate.patch &&
+yarn compile &&
 yarn mr &&
 git reset --hard HEAD &&
 docker build . -t sean/node-web-app &&
