@@ -86,3 +86,13 @@ curl -L http://localhost:3000
 ```
 ssh blog@dev1 'bash -s' < bin/deploy.sh
 ```
+
+## 备忘
+
+先在根目录下创建 nginx.config 文件
+
+```bash
+docker run --name nginx1 --network=host -d nginx:1.21
+
+docker run --name nginx1 --network=host -v /home/blog/nginx.conf:/etc/nginx/conf.d/default.conf -v /home/blog/app/.next/static/:/usr/share/nginx/html/_next/static/ -d nginx:1.21
+```
